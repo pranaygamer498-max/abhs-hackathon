@@ -1,40 +1,85 @@
 abhs-connect/
-├── .gitignore
-├── README.md
 ├── supabase/
 │   └── migrations/
-│       └── 20250101000000_init_schema.sql    <-- Database migrations & RLS policies
+│       └── 01_init.sql
 ├── backend/
 │   ├── .env.example
 │   ├── requirements.txt
 │   └── app/
-│       ├── main.py                          <-- FastAPI entrypoint
+│       ├── __init__.py
+│       ├── main.py
 │       ├── core/
+│       │   ├── __init__.py
 │       │   ├── config.py
 │       │   ├── database.py
-│       │   └── security.py                  <-- Supabase JWT cryptographic verifier
-│       ├── schemas/                         <-- Pydantic validation contracts
+│       │   └── security.py
+│       ├── schemas/
+│       │   ├── __init__.py
+│       │   ├── admin.py
+│       │   ├── announcement.py
+│       │   ├── directory.py
+│       │   ├── event.py
+│       │   ├── project.py
+│       │   └── user.py
 │       └── api/
-│           ├── deps.py                      <-- Role guards (Developer/Admin checks)
+│           ├── __init__.py
+│           ├── deps.py
 │           └── v1/
-│               ├── api.py                   <-- Unified v1 router
-│               └── endpoints/               <-- Auth, Announcements, Events, Projects, Admin
+│               ├── __init__.py
+│               └── endpoints/
+│                   ├── __init__.py
+│                   ├── admin.py
+│                   ├── announcements.py
+│                   ├── auth.py
+│                   ├── directory.py
+│                   ├── events.py
+│                   ├── projects.py
+│                   └── system.py
 └── frontend/
     ├── .env.local.example
     ├── package.json
-    ├── tailwind.config.ts                   <-- Cyberpunk dark theme configuration
+    ├── postcss.config.js
+    ├── tailwind.config.ts
+    ├── tsconfig.json
+    ├── lib/
+    │   ├── utils.ts
+    │   └── supabase/
+    │       ├── client.ts
+    │       └── server.ts
     ├── context/
-    │   └── AuthContext.tsx                  <-- Client authentication & role state
+    │   └── AuthContext.tsx
     ├── components/
-    │   ├── Navbar.tsx
     │   ├── Footer.tsx
-    │   └── auth/AdminGuard.tsx              <-- Route guard for /developer
+    │   ├── Navbar.tsx
+    │   ├── announcements/
+    │   │   └── CreateAnnouncementModal.tsx
+    │   ├── auth/
+    │   │   └── AdminGuard.tsx
+    │   ├── developer/
+    │   │   ├── AddMemberModal.tsx
+    │   │   └── SitePagesEditor.tsx
+    │   ├── directory/
+    │   │   └── ManageMemberModal.tsx
+    │   ├── events/
+    │   │   └── CreateEventModal.tsx
+    │   └── projects/
+    │       ├── ReviewProjectModal.tsx
+    │       └── SubmitProjectModal.tsx
     └── app/
+        ├── globals.css
         ├── layout.tsx
-        ├── page.tsx                         <-- Cyberpunk Homepage
-        ├── login/page.tsx                   <-- Authentication portal
-        ├── announcements/page.tsx
-        ├── events/page.tsx
-        ├── directory/page.tsx
-        ├── projects/page.tsx
-        └── developer/page.tsx               <-- Admin/Developer command console
+        ├── page.tsx
+        ├── login/
+        │   └── page.tsx
+        ├── announcements/
+        │   ├── page.tsx
+        │   └── [slug]/
+        │       └── page.tsx
+        ├── events/
+        │   └── page.tsx
+        ├── directory/
+        │   └── page.tsx
+        ├── projects/
+        │   └── page.tsx
+        └── developer/
+            └── page.tsx
