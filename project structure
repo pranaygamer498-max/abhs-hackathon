@@ -1,0 +1,40 @@
+abhs-connect/
+├── .gitignore
+├── README.md
+├── supabase/
+│   └── migrations/
+│       └── 20250101000000_init_schema.sql    <-- Database migrations & RLS policies
+├── backend/
+│   ├── .env.example
+│   ├── requirements.txt
+│   └── app/
+│       ├── main.py                          <-- FastAPI entrypoint
+│       ├── core/
+│       │   ├── config.py
+│       │   ├── database.py
+│       │   └── security.py                  <-- Supabase JWT cryptographic verifier
+│       ├── schemas/                         <-- Pydantic validation contracts
+│       └── api/
+│           ├── deps.py                      <-- Role guards (Developer/Admin checks)
+│           └── v1/
+│               ├── api.py                   <-- Unified v1 router
+│               └── endpoints/               <-- Auth, Announcements, Events, Projects, Admin
+└── frontend/
+    ├── .env.local.example
+    ├── package.json
+    ├── tailwind.config.ts                   <-- Cyberpunk dark theme configuration
+    ├── context/
+    │   └── AuthContext.tsx                  <-- Client authentication & role state
+    ├── components/
+    │   ├── Navbar.tsx
+    │   ├── Footer.tsx
+    │   └── auth/AdminGuard.tsx              <-- Route guard for /developer
+    └── app/
+        ├── layout.tsx
+        ├── page.tsx                         <-- Cyberpunk Homepage
+        ├── login/page.tsx                   <-- Authentication portal
+        ├── announcements/page.tsx
+        ├── events/page.tsx
+        ├── directory/page.tsx
+        ├── projects/page.tsx
+        └── developer/page.tsx               <-- Admin/Developer command console
